@@ -7,20 +7,7 @@ const BookList = (props) => {
     props.getBookId(id);
   };
 
-  const tempBooks = [
-    {
-      id: 1,
-      bookName: "The Obsession",
-      author: "Nora Roberts",
-      category: "Novel",
-    },
-    {
-      id: 2,
-      bookName: "Wings of Fire",
-      author: "APJ Abdul Kalam",
-      category: "Self Help",
-    },
-  ];
+
 
   const renderBookList = props.books.map((book) => {
     return <BookRow book={book} key= {book.id} clickHandler={deleteClickHandler} />;
