@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { BrowserRouter as router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Routes,
+  useParams
+} from "react-router-dom";
 import "./App.css";
 import Header from "./Header";
 import AddBook from "./AddBook";
 import BookList from "./BookList";
+import BookDetails from "./BookDetails";
 
 function App() {
   const LOCAL_STORAGE_KEY = "books";
-  
 
   // state hook
   const [books, setBooks] = useState([]);
@@ -42,10 +48,30 @@ function App() {
 
   return (
     <div className="ui container">
-      <Header />
-      <AddBook addBookHandler={addBookHandler} />
-      <br />
-      <BookList books={books} getBookId={removeBookHandler}/>
+      <Router>
+        <Header />
+        {/* <AddBook addBookHandler={addBookHandler} />
+        <BookList books={books} getBookId={removeBookHandler} /> */}
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              <Fragment>
+                <AddBook addBookHandler={addBookHandler} />
+                <BookList books={books} getBookId={removeBookHandler} />
+              </Fragment>
+            }
+          />
+          <Route
+            path="/book/:id"
+            element={
+              <BookDetails books={books}/>
+            }
+          />
+          {/* <Route path="/add" element={<AddBook addBookHandler={addBookHandler} />} /> */}
+        </Routes>
+      </Router>
     </div>
   );
 }
