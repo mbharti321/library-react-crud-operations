@@ -1,17 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { v4 as uuidv4 } from "uuid";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Routes,
-  useParams
-} from "react-router-dom";
-import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./Header";
 import AddBook from "./AddBook";
 import BookList from "./BookList";
 import BookDetails from "./BookDetails";
+import EditBook from "./EditBook";
 
 function App() {
   const LOCAL_STORAGE_KEY = "books";
@@ -63,13 +57,8 @@ function App() {
               </Fragment>
             }
           />
-          <Route
-            path="/book/:id"
-            element={
-              <BookDetails books={books}/>
-            }
-          />
-          {/* <Route path="/add" element={<AddBook addBookHandler={addBookHandler} />} /> */}
+          <Route path="/book/:id" element={<BookDetails />} />
+          <Route path="/edit/:id" element={<EditBook />} />
         </Routes>
       </Router>
     </div>

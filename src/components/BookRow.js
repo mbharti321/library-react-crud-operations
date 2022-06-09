@@ -13,11 +13,13 @@ const BookRow = (props) => {
       <div class="four wide column">{author}</div>
       <div class="four wide column">{category}</div>
       <div class="four wide column">
-        <i className="edit alternate outline green icon"></i>
+        <Link to={{ pathname: `/edit/${id}`, state: { book: props.book } }}>
+          <i className="edit alternate outline green icon"></i>
+        </Link>
         <i
           className="trash alternate outline red icon"
           onClick={() => {
-            props.clickHandler(id);
+            props.deleteHandler(id);
           }}
         ></i>
       </div>

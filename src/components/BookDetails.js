@@ -1,8 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 const BookDetails = (props) => {
-  console.log("BookDetails: ", props);
+  const { id } = useParams();
+
+  const book = useSelector((state) =>
+    state.books.filter((book) => String(book.id) === id)
+  );
+  const { bookName, author, category } = book[0];
 
   const myStyle = {
     display: "flex",
@@ -26,13 +32,13 @@ const BookDetails = (props) => {
       <div className="ui container" style={myStyle}>
         <h2>Book Details</h2>
         <div className="" style={myStyleContent}>
-          Book Name: <strong>The Obsession</strong>
+          Book Name: <strong>{bookName}</strong>
         </div>
         <div className="" style={myStyleContent}>
-          Author: <strong>Nora Robert</strong>
+          Author: <strong>{author}</strong>
         </div>
         <div className="" style={myStyleContent}>
-          Category: <strong>Romance</strong>
+          Category: <strong>{category}</strong>
         </div>
         <Link to="/">
           <button className="ui button blue">Home</button>

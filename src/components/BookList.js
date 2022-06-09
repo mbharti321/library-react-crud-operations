@@ -1,14 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import BookRow from "./BookRow";
+import { removeBook, updateBook } from "./redux/bookSliece";
 
 const BookList = (props) => {
+  const books = useSelector((state) => {
+    // console.log("state", state)
+    return state.books;
+  });
+
+  const dispatch = useDispatch();
+
   const deleteClickHandler = (id) => {
-    props.getBookId(id);
+    dispatch(removeBook(id));
   };
-  
-  const renderBookList = props.books.map((book) => {
-    return <BookRow book={book} key= {book.id} clickHandler={deleteClickHandler} />;
+  const editClickHandler = (id) => {
+    dispatch(updateBook(id));
+  };
+
+  const renderBookList = books.map((book) => {
+    return (
+      <BookRow
+        book={book}
+        key={book.id}
+        deleteHandler={deleteClickHandler}
+        editHandler={editClickHandler}
+      />
+    );
   });
 
   return (
@@ -20,7 +39,6 @@ const BookList = (props) => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          // margin: "20px",
           padding: "10px",
           // borderBlockEnd: "1px solid",
         }}
