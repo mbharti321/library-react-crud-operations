@@ -1,55 +1,52 @@
 const tempBooks = [
-    {
-      id: 1,
-      bookName: "The Obsession",
-      author: "Nora Roberts",
-      category: "Novel",
-    },
-    {
-      id: 2,
-      bookName: "Wings of Fire",
-      author: "APJ Abdul Kalam",
-      category: "Self Help",
-    },
-  ];
+  {
+    id: 1,
+    bookName: "The Obsession",
+    author: "Nora Roberts",
+    category: "Novel",
+  },
+  {
+    id: 2,
+    bookName: "Wings of Fire",
+    author: "APJ Abdul Kalam",
+    category: "Self Help",
+  },
+];
 
+// addBook.js
 
-
-// AddBook
-import React from "react";
-
-class AddBook extends React.Component {
-  state = {
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBook } from "./redux/bookSliece";
+ 
+const AddBook = () => {
+  const initialBook = {
     bookName: "",
     author: "",
     category: "",
   };
+  const dispatch = useDispatch();
 
-  //   why cant we declere add as const variable
-  add = (e) => {
+  const [book, setBook] = useState(initialBook);
+  /**  function to clear the form */
+  const claerForm = () => {
+    setBook(initialBook);
+  }
+
+  /** addBookForm: call addBook reducer from bookSlicer */
+  const addBookForm = (e) => {
     e.preventDefault();
-
-    if (
-      this.state.bookName === "" ||
-      this.state.author === "" ||
-      this.state.category === ""
-    ) {
-      alert("All fields are required");
-      return;
-    }
-    // console.log(this.state);
-    this.props.addBookHandler(this.state);
-    this.setState({ bookName: "", author: "", category: "" });
-    // redirect to home page
-    // this.props.history.push("/");
+    dispatch(addBook(book));
+    // clear the form
+    claerForm();
   };
 
-  render() {
-    return (
+  return (
+    <div>
       <div className="ui main">
         <br />
         <h2>Add Book</h2>
-        <form className="ui form" onSubmit={this.add}>
+        <form className="ui form" onSubmit={addBookForm}>
           <div className="field">
             <label>Book Name</label>
             <input
@@ -58,12 +55,13 @@ class AddBook extends React.Component {
               name="bookName"
               placeholder="Book Name"
               required
-              value={this.state.bookName}
+              value={book.bookName}
               onChange={(e) => {
-                this.setState({ bookName: e.target.value });
+                setBook({...book, bookName: e.target.value });
               }}
             />
           </div>
+          
           <div className="field">
             <label>Author</label>
             <input
@@ -72,9 +70,9 @@ class AddBook extends React.Component {
               name="author"
               placeholder="Author"
               required
-              value={this.state.author}
+              value={book.author}
               onChange={(e) => {
-                this.setState({ author: e.target.value });
+                setBook({...book, author: e.target.value });
               }}
             />
           </div>
@@ -86,19 +84,19 @@ class AddBook extends React.Component {
               name="category"
               placeholder="Select Category"
               required
-              value={this.state.category}
+              value={book.category}
               onChange={(e) => {
-                this.setState({ category: e.target.value });
+                setBook({...book, category: e.target.value });
               }}
             />
           </div>
 
           <button className="ui button blue">Submit</button>
-          <button className="ui button">Reset</button>
+          {/* <button className="ui button" onClick={claerForm()}>Reset</button> */}
         </form>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default AddBook;
