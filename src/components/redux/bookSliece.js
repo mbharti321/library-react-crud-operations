@@ -40,9 +40,13 @@ export const bookSlice = createSlice({
       });
       return updatedState;
     },
+    // restore from local storage
+    restoreBooks: (state, action) => {
+      return action.payload;
+    }
   },
 });
 
-export const { addBook, removeBook, updateBook } = bookSlice.actions;
+export const { addBook, removeBook, updateBook, restoreBooks } = bookSlice.actions;
 
 export default bookSlice.reducer;

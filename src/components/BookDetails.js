@@ -20,6 +20,7 @@ const BookDetails = (props) => {
     width: "60%",
     padding: "20px",
     backgroundColor: "gray",
+    borderRadius: "25px",
     // alignContent: "center",
   };
 
@@ -31,8 +32,9 @@ const BookDetails = (props) => {
     <div>
       <div className="ui container" style={myStyle}>
         <h2>Book Details</h2>
+
         <div className="" style={myStyleContent}>
-          Book Name: <strong>{bookName}</strong>
+          Name of the book: <strong>{bookName}</strong>
         </div>
         <div className="" style={myStyleContent}>
           Author: <strong>{author}</strong>
@@ -40,9 +42,14 @@ const BookDetails = (props) => {
         <div className="" style={myStyleContent}>
           Category: <strong>{category}</strong>
         </div>
+        <div>
         <Link to="/">
           <button className="ui button blue">Home</button>
         </Link>
+        <Link to={`/edit/${id}`}>
+          <button className="ui button green">Edit Book Details</button>
+        </Link>
+        </div>
       </div>
     </div>
   );
