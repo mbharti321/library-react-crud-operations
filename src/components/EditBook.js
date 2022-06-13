@@ -1,74 +1,86 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { updateBook } from "./redux/bookSliece";
+import { useFormik } from "formik";
+import bookValidation from "./formValidation/bookValidation";
 
 const EditBook = (props) => {
   const { id } = useParams();
-  // get the bookwith th epassed id (filter out from redux state)
+  // get the bookwith the passed id (filter out from redux state)
   const currentBook = useSelector((state) =>
     state.books.filter((book) => String(book.id) === id)
   );
+  const errorStyle = {
+    color: "red",
+  };
 
   const dispatch = useDispatch();
-  const [book, setBook] = useState(currentBook[0]);
 
-  const updateBookForm = (e) => {
-    e.preventDefault();
-    dispatch(updateBook(book));
-    // <Redirect to="/" />
-    //  useNavigate("/");
-  };
+  const formik = useFormik({
+    initialValues: currentBook[0],
+    validate: bookValidation,
+    onSubmit: (values) => {
+      const book = values;
+      dispatch(updateBook(book));
+      // formik.resetForm();
+      alert("Book updated successfully!");
+    },
+  });
 
   return (
     <div>
       <div className="ui main">
         <br />
         <h2>
-          Update Book <strong>{book.id}</strong>
+          Update Book <strong>{formik.values.id}</strong>
         </h2>
-        <form className="ui form" onSubmit={updateBookForm}>
+        <form className="ui form" onSubmit={formik.handleSubmit}>
           <div className="field">
-            <label>Book Name</label>
+            <label htmlFor="bookname">Book Name</label>
+            {formik.touched.bookName && formik.errors.bookname ? (
+              <span style={errorStyle}>{formik.errors.bookname} </span>
+            ) : null}
             <input
               type="text"
-              className=""
+              id="bookName"
               name="bookName"
               placeholder="Book Name"
-              required
-              value={book.bookName}
-              onChange={(e) => {
-                setBook({ ...book, bookName: e.target.value });
-              }}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.bookName}
             />
           </div>
 
           <div className="field">
-            <label>Author</label>
+            <label htmlFor="author">Author</label>
+            {formik.touched.author && formik.errors.author ? (
+              <span style={errorStyle}>{formik.errors.author} </span>
+            ) : null}
             <input
               type="text"
-              className=""
+              id="author"
               name="author"
               placeholder="Author"
-              required
-              value={book.author}
-              onChange={(e) => {
-                setBook({ ...book, author: e.target.value });
-              }}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.author}
             />
           </div>
+
           <div className="field">
-            <label>Category</label>
+            <label htmlFor="bookname">Category</label>
+            {formik.touched.category && formik.errors.category ? (
+              <span style={errorStyle}>{formik.errors.category} </span>
+            ) : null}
             <input
               type="text"
-              className=""
+              id="category"
               name="category"
-              placeholder="Select Category"
-              required
-              value={book.category}
-              onChange={(e) => {
-                setBook({ ...book, category: e.target.value });
-              }}
+              placeholder="Category"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.category}
             />
           </div>
 
