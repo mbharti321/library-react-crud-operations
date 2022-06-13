@@ -1,77 +1,77 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
 import { addBook } from "./redux/bookSliece";
- 
+
 const AddBook = () => {
+  const dispatch = useDispatch();
+
   const initialBook = {
     bookName: "",
     author: "",
     category: "",
   };
-  const dispatch = useDispatch();
-  const [book, setBook] = useState(initialBook);
-  
-  const claerForm = () => {
-    setBook(initialBook);
-  }
-  const addBookForm = (e) => {
-    e.preventDefault();
-    dispatch(addBook(book));
-    // clear the form
-    claerForm();
-  };
+
+  const formik = useFormik({
+    initialValues: initialBook,
+    onSubmit: (values) => {
+      const book = values;
+      // call redux redcer
+      dispatch(addBook(book));
+      // clear the form
+      formik.resetForm();
+    },
+  });
+
+ 
 
   return (
     <div>
       <div className="ui main">
         <br />
         <h2>Add Book</h2>
-        <form className="ui form" onSubmit={addBookForm}>
+
+        <form className="ui form" onSubmit={formik.handleSubmit}>
           <div className="field">
-            <label>Book Name</label>
+            <label htmlFor="bookName">Book Name</label>
             <input
               type="text"
-              className=""
+              id="bookName"
               name="bookName"
               placeholder="Book Name"
-              required
-              value={book.bookName}
-              onChange={(e) => {
-                setBook({...book, bookName: e.target.value });
-              }}
+              onChange={formik.handleChange}
+              value={formik.values.bookName}
             />
           </div>
-          
+
           <div className="field">
-            <label>Author</label>
+            <label htmlFor="author">Author</label>
             <input
               type="text"
-              className=""
+              id="author"
               name="author"
               placeholder="Author"
               required
-              value={book.author}
-              onChange={(e) => {
-                setBook({...book, author: e.target.value });
-              }}
+              onChange={formik.handleChange}
+              value={formik.values.author}
             />
           </div>
           <div className="field">
-            <label>Category</label>
+            <label htmlFor="category">Category</label>
             <input
               type="text"
+              id="category"
               className=""
               name="category"
               placeholder="Select Category"
               required
-              value={book.category}
-              onChange={(e) => {
-                setBook({...book, category: e.target.value });
-              }}
+              onChange={formik.handleChange}
+              value={formik.values.category}
             />
           </div>
 
-          <button className="ui button blue">Submit</button>
+          <button type="submit" className="ui button blue">
+            Submit
+          </button>
           {/* <button className="ui button" onClick={claerForm()}>Reset</button> */}
         </form>
       </div>
