@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { updateBook } from "./redux/bookSliece";
 import { useFormik } from "formik";
 import bookValidation from "./formValidation/bookValidation";
+import { errorStyle, marginTop } from "./myStyle";
 
 const EditBook = (props) => {
   const { id } = useParams();
@@ -11,9 +12,6 @@ const EditBook = (props) => {
   const currentBook = useSelector((state) =>
     state.books.filter((book) => String(book.id) === id)
   );
-  const errorStyle = {
-    color: "red",
-  };
 
   const dispatch = useDispatch();
 
@@ -24,16 +22,15 @@ const EditBook = (props) => {
       const book = values;
       dispatch(updateBook(book));
       // formik.resetForm();
-      alert("Book updated successfully!");
+      alert(`Book "${book.bookName}" updated successfully!`);
     },
   });
 
   return (
     <div>
-      <div className="ui main">
-        <br />
+      <div className="ui main" style={marginTop}>
         <h2>
-          Update Book <strong>{formik.values.id}</strong>
+          Update Book: <span style={{color: '#f2711c'}}>{formik.values.bookName}</span>
         </h2>
         <form className="ui form" onSubmit={formik.handleSubmit}>
           <div className="field">

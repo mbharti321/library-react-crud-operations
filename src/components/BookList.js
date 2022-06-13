@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import BookRow from "./BookRow";
 import { removeBook, updateBook } from "./redux/bookSliece";
+import { tableHader, tableStyle } from "./myStyle";
 
 const BookList = (props) => {
   const books = useSelector((state) => {
@@ -19,56 +20,55 @@ const BookList = (props) => {
     dispatch(updateBook(id));
   };
 
+  let count = 0;
   const renderBookList = books.map((book) => {
     return (
       <BookRow
         book={book}
-        key={book.id}
+        count={++ count}
         deleteHandler={deleteClickHandler}
         editHandler={editClickHandler}
       />
     );
   });
+  
 
   return (
     <div className="main">
       <br />
       <br />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          padding: "10px",
-          // borderBlockEnd: "1px solid",
-        }}
-      >
+      <div style={tableHader}>
         <h2>Book List</h2>
         <Link to="/add">
           {/* <button className="ui button blue">Add Book</button> */}
         </Link>
       </div>
-      <div
-        class="ui grid container"
-        style={{
-          borderBlockEnd: "1px solid",
-        }}
-      >
-        <div class="four wide column">
-          <b>Name</b>
+      <div style={tableStyle}>
+        <div
+          class="ui grid container"
+          style={{
+            borderBlockEnd: "1px solid",
+          }}
+        >
+        <div class="one wide column">
+            <b>Sl.no</b>
+          </div>
+          <div class="four wide column">
+            <b>Name</b>
+          </div>
+          <div class="four wide column">
+            <b>Author</b>
+          </div>
+          <div class="four wide column">
+            <b>Category</b>
+          </div>
+          <div class="three wide column">
+            <b>Action</b>
+          </div>
         </div>
-        <div class="four wide column">
-          <b>Author</b>
-        </div>
-        <div class="four wide column">
-          <b>Category</b>
-        </div>
-        <div class="four wide column">
-          <b>Action</b>
-        </div>
+        {/* list all books in the list */}
+        {renderBookList}
       </div>
-      {/* list all books in the list */}
-      {renderBookList}
     </div>
   );
 };

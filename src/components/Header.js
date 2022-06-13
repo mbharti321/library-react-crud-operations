@@ -1,10 +1,11 @@
 import React from 'react';
+import { logoStyle } from './myStyle';
 
 const Header = () => {
     return (
-        <div className="ui fixed menu">
+        <div className="ui fixed menu" >
             <div className="ui container centered">
-                <h2>My Library</h2>
+                <h2 style={logoStyle}>My Library</h2>
             </div>
         </div>
     )

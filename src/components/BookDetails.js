@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { flexBoxStyle, marginTop, myStyle, myStyleContent } from "./myStyle";
 
 const BookDetails = (props) => {
   const { id } = useParams();
@@ -10,45 +11,38 @@ const BookDetails = (props) => {
   );
   const { bookName, author, category } = book[0];
 
-  const myStyle = {
-    display: "flex",
-    // justifyContent: "center",
-    // justifyItems: "center",
-    flexDirection: "column",
-    margin: "auto",
-    marginTop: "50px",
-    width: "60%",
-    padding: "20px",
-    backgroundColor: "gray",
-    borderRadius: "25px",
-    // alignContent: "center",
-  };
-
-  const myStyleContent = {
-    margin: "5px",
-    padding: "10px",
-  };
   return (
-    <div>
+    <div style={marginTop}>
       <div className="ui container" style={myStyle}>
         <h2>Book Details</h2>
 
-        <div className="" style={myStyleContent}>
-          Name of the book: <strong>{bookName}</strong>
-        </div>
-        <div className="" style={myStyleContent}>
-          Author: <strong>{author}</strong>
-        </div>
-        <div className="" style={myStyleContent}>
-          Category: <strong>{category}</strong>
-        </div>
-        <div>
-        <Link to="/">
-          <button className="ui button blue">Home</button>
-        </Link>
-        <Link to={`/edit/${id}`}>
-          <button className="ui button green">Edit Book Details</button>
-        </Link>
+        <div style={flexBoxStyle}>
+          <div className="" style={myStyleContent}>
+            <div>Name of the book:</div>{" "}
+            <div>
+              <strong>{bookName}</strong>
+            </div>
+          </div>
+          <div className="" style={myStyleContent}>
+            <div>Author:</div>{" "}
+            <div>
+              <strong>{author}</strong>
+            </div>
+          </div>
+          <div className="" style={myStyleContent}>
+            <div>Category:</div>{" "}
+            <div>
+              <strong>{category}</strong>
+            </div>
+          </div>
+          <div>
+            <Link to="/">
+              <button className="ui button blue">Home</button>
+            </Link>
+            <Link to={`/edit/${id}`}>
+              <button className="ui button green">Edit Book Details </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
