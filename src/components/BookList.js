@@ -20,12 +20,11 @@ const BookList = (props) => {
     dispatch(updateBook(id));
   };
 
-  let count = 0;
-  const renderBookList = books.map((book) => {
+  const renderBookList = books.map((book, index) => {
     return (
       <BookRow
         book={book}
-        count={++ count}
+        count={index}
         deleteHandler={deleteClickHandler}
         editHandler={editClickHandler}
       />

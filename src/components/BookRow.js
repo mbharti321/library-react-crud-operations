@@ -5,7 +5,7 @@ const BookRow = (props) => {
   const { id, bookName, author, category } = props.book;
   return (
     <div class="ui grid container">
-      <div class="one wide column">{props.count}.</div>
+      <div class="one wide column">{props.count + 1}.</div>
 
       <div class="four wide column">
         <Link to={{ pathname: `/book/${id}`, state: { book: props.book } }}>
