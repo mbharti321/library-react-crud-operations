@@ -1,8 +1,9 @@
+import * as React from 'react';
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { addBook } from "./redux/bookSliece";
 import bookValidation from "./formValidation/bookValidation";
-import { errorStyle, marginTop } from "./myStyle";
+import { errorStyle } from "./myStyle";
 
 const AddBook = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ const AddBook = () => {
     initialValues: initialBook,
     validate: bookValidation,
     onSubmit: (values) => {
+      console.log("hi1");
+
       const book = values;
       // call redux redcer
       dispatch(addBook(book));
@@ -34,7 +37,7 @@ const AddBook = () => {
         <div className="field">
           <label htmlFor="bookName">Book Name</label>
           {formik.touched.bookName && formik.errors.bookName ? (
-            <div style={errorStyle}>{formik.errors.bookName}</div>
+            <div style={errorStyle}>{formik.errors.bookName as string}</div>
           ) : null}
           <input
             type="text"
@@ -50,7 +53,7 @@ const AddBook = () => {
         <div className="field">
           <label htmlFor="author">Author</label>
           {formik.touched.author && formik.errors.author ? (
-            <div style={errorStyle}>{formik.errors.author}</div>
+            <div style={errorStyle }>{formik.errors.author as string}</div>
           ) : null}
           <input
             type="text"
@@ -65,7 +68,7 @@ const AddBook = () => {
         <div className="field">
           <label htmlFor="category">Category</label>
           {formik.touched.category && formik.errors.category ? (
-            <div style={errorStyle}>{formik.errors.category}</div>
+            <div style={errorStyle}>{formik.errors.category as string}</div>
           ) : null}
           <input
             type="text"
@@ -83,7 +86,7 @@ const AddBook = () => {
           <button type="submit" className="ui button blue">
             Submit
           </button>
-          <button
+          <button type="button"
             className="ui button red"
             onClick={() => {
               formik.resetForm();

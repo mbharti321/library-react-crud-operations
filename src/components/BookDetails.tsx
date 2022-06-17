@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { flexBoxStyle, marginTop, myStyle, myStyleContent } from "./myStyle";
@@ -6,17 +6,17 @@ import { flexBoxStyle, marginTop, myStyle, myStyleContent } from "./myStyle";
 const BookDetails = (props) => {
   const { id } = useParams();
 
-  const book = useSelector((state) =>
+  const book = useSelector((state: any) =>
     state.books.filter((book) => String(book.id) === id)
   );
   const { bookName, author, category } = book[0];
 
   return (
     <div style={marginTop}>
-      <div className="ui container" style={myStyle}>
+      <div className="ui container" style={myStyle as React.CSSProperties}>
         <h2>Book Details</h2>
 
-        <div style={flexBoxStyle}>
+        <div style={flexBoxStyle as React.CSSProperties}>
           <div className="" style={myStyleContent}>
             <div>Name of the book:</div>{" "}
             <div>

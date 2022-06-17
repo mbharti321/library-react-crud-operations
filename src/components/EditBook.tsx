@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { updateBook } from "./redux/bookSliece";
@@ -9,7 +9,7 @@ import { errorStyle, marginTop } from "./myStyle";
 const EditBook = (props) => {
   const { id } = useParams();
   // get the bookwith the passed id (filter out from redux state)
-  const currentBook = useSelector((state) =>
+  const currentBook = useSelector((state: any) =>
     state.books.filter((book) => String(book.id) === id)
   );
 
@@ -30,14 +30,18 @@ const EditBook = (props) => {
     <div>
       <div className="ui main" style={marginTop}>
         <h2>
-          Update Book: <span style={{color: '#f2711c'}}>{formik.values.bookName}</span>
+          Update Book:{" "}
+          <span style={{ color: "#f2711c" }}>{formik.values.bookName}</span>
         </h2>
         <form className="ui form" onSubmit={formik.handleSubmit}>
           <div className="field">
             <label htmlFor="bookname">Book Name</label>
             {formik.touched.bookName && formik.errors.bookname ? (
-              <span style={errorStyle}>{formik.errors.bookname} </span>
+              <span style={errorStyle}>
+                {formik.errors.bookname as string}{" "}
+              </span>
             ) : null}
+
             <input
               type="text"
               id="bookName"
@@ -52,7 +56,7 @@ const EditBook = (props) => {
           <div className="field">
             <label htmlFor="author">Author</label>
             {formik.touched.author && formik.errors.author ? (
-              <span style={errorStyle}>{formik.errors.author} </span>
+              <span style={errorStyle}>{formik.errors.author as string} </span>
             ) : null}
             <input
               type="text"
@@ -68,7 +72,9 @@ const EditBook = (props) => {
           <div className="field">
             <label htmlFor="bookname">Category</label>
             {formik.touched.category && formik.errors.category ? (
-              <span style={errorStyle}>{formik.errors.category} </span>
+              <span style={errorStyle}>
+                {formik.errors.category as string}{" "}
+              </span>
             ) : null}
             <input
               type="text"
@@ -81,7 +87,9 @@ const EditBook = (props) => {
             />
           </div>
 
-          <button className="ui button orange">Update Book</button>
+          <button type="submit" className="ui button orange">
+            Update Book
+          </button>
           <Link to="/">
             <button className="ui button blue">Home</button>
           </Link>

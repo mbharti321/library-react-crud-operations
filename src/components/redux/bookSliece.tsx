@@ -20,6 +20,7 @@ export const bookSlice = createSlice({
   reducers: {
     // Add new book
     addBook: (state, action) => {
+      console.log("hi");
       const newBook = {
         id: uuid(),
         ...action.payload,
@@ -43,10 +44,11 @@ export const bookSlice = createSlice({
     // restore from local storage
     restoreBooks: (state, action) => {
       return action.payload;
-    }
+    },
   },
 });
 
-export const { addBook, removeBook, updateBook, restoreBooks } = bookSlice.actions;
+export const { addBook, removeBook, updateBook, restoreBooks } =
+  bookSlice.actions;
 
 export default bookSlice.reducer;

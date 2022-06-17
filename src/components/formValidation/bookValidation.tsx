@@ -1,7 +1,9 @@
-import React from "react";
+// import * as React from "react";
 
-const bookValidation = (values) => {
-  const errors = {};
+import { Book, Errors } from "../typescriptObject";
+
+const bookValidation = (values: Book) => {
+  const errors: Errors = {};
 
   if (!values.bookName) {
     errors.bookName = "Required";
