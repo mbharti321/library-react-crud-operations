@@ -11,3 +11,10 @@
 
 - Wireframe for UI: [https://app.diagrams.net/#G1idxKf0TU7qBttsZH6U51RKoEtnYkw-Wx](https://app.diagrams.net/#G1idxKf0TU7qBttsZH6U51RKoEtnYkw-Wx)
 - use [draw.io](http://draw.io) to see
+
+---
+
+1. Use Redux
+2. Use Formika for form validation
+3. Use typeScript
+   
