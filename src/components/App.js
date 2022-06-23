@@ -5,7 +5,7 @@ import AddBook from "./AddBook";
 import BookList from "./BookList";
 import BookDetails from "./BookDetails";
 import EditBook from "./EditBook";
-import { restoreBooks } from "./redux/bookSliece";
+import { restoreBooks } from "./redux/bookSlice";
 
 import { useDispatch, useSelector } from "react-redux";
 

@@ -17,7 +17,7 @@ const tempBooks = [
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addBook } from "./redux/bookSliece";
+import { addBook } from "./redux/bookSlice";
  
 const AddBook = () => {
   const initialBook = {
