@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { addBook } from "./redux/bookSliece";
+import { addBook } from "./redux/bookSlice";
 import bookValidation from "./formValidation/bookValidation";
 import { errorStyle } from "./myStyle";
 

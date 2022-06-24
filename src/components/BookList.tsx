@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import BookRow from "./BookRow";
-import { removeBook, updateBook } from "./redux/bookSliece";
+import { removeBook, updateBook } from "./redux/bookSlice";
 import { tableHader, tableStyle } from "./myStyle";
 import { Book } from "./typescriptObject";
 
