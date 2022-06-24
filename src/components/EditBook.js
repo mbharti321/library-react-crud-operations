@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { updateBook } from "./redux/bookSliece";
+import { updateBook } from "./redux/bookSlice";
 import { useFormik } from "formik";
 import bookValidation from "./formValidation/bookValidation";
 import { errorStyle, marginTop } from "./myStyle";
