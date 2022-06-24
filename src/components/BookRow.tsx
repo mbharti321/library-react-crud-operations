@@ -1,21 +1,21 @@
-import React from "react";
+import * as React from "react";
 import { Link } from "react-router-dom";
 
 const BookRow = (props) => {
   const { id, bookName, author, category } = props.book;
   return (
-    <div class="ui grid container">
-      <div class="one wide column">{props.count}.</div>
+    <div className="ui grid container">
+      <div className="one wide column">{props.count + 1}.</div>
 
-      <div class="four wide column">
-        <Link to={{ pathname: `/book/${id}`, state: { book: props.book } }}>
+      <div className="four wide column">
+        <Link to={{ pathname: `/book/${id}`}}>
           <div>{bookName}</div>
         </Link>
       </div>
-      <div class="four wide column">{author}</div>
-      <div class="four wide column">{category}</div>
-      <div class="three wide column">
-        <Link to={{ pathname: `/edit/${id}`, state: { book: props.book } }}>
+      <div className="four wide column">{author}</div>
+      <div className="four wide column">{category}</div>
+      <div className="three wide column">
+        <Link to={{ pathname: `/edit/${id}`}}>
           <i className="edit alternate outline green icon"></i>
         </Link>
         <i

@@ -1,3 +1,7 @@
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBook } from "./redux/bookSliece";
+
 const tempBooks = [
   {
     id: 1,
@@ -15,10 +19,6 @@ const tempBooks = [
 
 // addBook.js
 
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addBook } from "./redux/bookSlice";
- 
 const AddBook = () => {
   const initialBook = {
     bookName: "",
@@ -31,7 +31,7 @@ const AddBook = () => {
   /**  function to clear the form */
   const claerForm = () => {
     setBook(initialBook);
-  }
+  };
 
   /** addBookForm: call addBook reducer from bookSlicer */
   const addBookForm = (e) => {
@@ -57,11 +57,11 @@ const AddBook = () => {
               required
               value={book.bookName}
               onChange={(e) => {
-                setBook({...book, bookName: e.target.value });
+                setBook({ ...book, bookName: e.target.value });
               }}
             />
           </div>
-          
+
           <div className="field">
             <label>Author</label>
             <input
@@ -72,7 +72,7 @@ const AddBook = () => {
               required
               value={book.author}
               onChange={(e) => {
-                setBook({...book, author: e.target.value });
+                setBook({ ...book, author: e.target.value });
               }}
             />
           </div>
@@ -86,7 +86,7 @@ const AddBook = () => {
               required
               value={book.category}
               onChange={(e) => {
-                setBook({...book, category: e.target.value });
+                setBook({ ...book, category: e.target.value });
               }}
             />
           </div>

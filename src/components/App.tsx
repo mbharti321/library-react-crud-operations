@@ -1,13 +1,13 @@
-import React, { useEffect, Fragment } from "react";
+import * as React from "react";
+import  { Fragment } from "react"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./Header";
 import AddBook from "./AddBook";
 import BookList from "./BookList";
 import BookDetails from "./BookDetails";
 import EditBook from "./EditBook";
-import { restoreBooks } from "./redux/bookSlice";
-
-import { useDispatch, useSelector } from "react-redux";
+// import { restoreBooks } from "./redux/bookSlice";
+// import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   // const LOCAL_STORAGE_KEY = "books";
@@ -36,7 +36,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            exact
+            // exact
             element={
               <Fragment>
                 <AddBook />

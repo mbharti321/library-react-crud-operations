@@ -1,31 +1,33 @@
-import React from "react";
+import * as React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import BookRow from "./BookRow";
 import { removeBook, updateBook } from "./redux/bookSlice";
 import { tableHader, tableStyle } from "./myStyle";
+import { Book } from "./typescriptObject";
 
-const BookList = (props) => {
-  const books = useSelector((state) => {
+
+const BookList = (props)  => {
+  const books = useSelector((state: any) => {
     // console.log("state", state)
     return state.books;
   });
 
   const dispatch = useDispatch();
 
-  const deleteClickHandler = (id) => {
+  const deleteClickHandler = (id: number) => {
     dispatch(removeBook(id));
   };
-  const editClickHandler = (id) => {
+  const editClickHandler = (id : number) => {
     dispatch(updateBook(id));
   };
 
-  let count = 0;
-  const renderBookList = books.map((book) => {
+  const renderBookList = books.map((book: Book , index: number) => {
     return (
       <BookRow
         book={book}
-        count={++ count}
+        key={book.id}
+        count={index}
         deleteHandler={deleteClickHandler}
         editHandler={editClickHandler}
       />
@@ -37,7 +39,7 @@ const BookList = (props) => {
     <div className="main">
       <br />
       <br />
-      <div style={tableHader}>
+      <div style={tableHader as React.CSSProperties}>
         <h2>Book List</h2>
         <Link to="/add">
           {/* <button className="ui button blue">Add Book</button> */}
@@ -45,24 +47,24 @@ const BookList = (props) => {
       </div>
       <div style={tableStyle}>
         <div
-          class="ui grid container"
+          className="ui grid container"
           style={{
             borderBlockEnd: "1px solid",
           }}
         >
-        <div class="one wide column">
+        <div className="one wide column">
             <b>Sl.no</b>
           </div>
-          <div class="four wide column">
+          <div className="four wide column">
             <b>Name</b>
           </div>
-          <div class="four wide column">
+          <div className="four wide column">
             <b>Author</b>
           </div>
-          <div class="four wide column">
+          <div className="four wide column">
             <b>Category</b>
           </div>
-          <div class="three wide column">
+          <div className="three wide column">
             <b>Action</b>
           </div>
         </div>
