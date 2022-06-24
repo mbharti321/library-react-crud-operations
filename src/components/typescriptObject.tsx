@@ -10,3 +10,18 @@ export interface Errors {
     author: string,
     category: string,
   }
+
+  export const initialBooks =[
+    {
+      id: 1,
+      bookName: "The Obsession",
+      author: "Nora Roberts",
+      category: "Novel",
+    },
+    {
+      id: 2,
+      bookName: "Book2",
+      author: "Nora",
+      category: "Novel2",
+    },
+  ]

@@ -1,26 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
+import { initialBooks } from "../typescriptObject";
 
 export const bookSlice = createSlice({
   name: "books",
-  initialState: [
-    {
-      id: 1,
-      bookName: "The Obsession",
-      author: "Nora Roberts",
-      category: "Novel",
-    },
-    {
-      id: 2,
-      bookName: "Book2",
-      author: "Nora",
-      category: "Novel2",
-    },
-  ],
+  initialState: initialBooks,
   reducers: {
     // Add new book
-    addBook: (state, action) => {
-      console.log("hi");
+    addBook: (state, action: any): void => {
       const newBook = {
         id: uuid(),
         ...action.payload,

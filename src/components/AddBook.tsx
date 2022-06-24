@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { addBook } from "./redux/bookSliece";
@@ -18,8 +18,6 @@ const AddBook = () => {
     initialValues: initialBook,
     validate: bookValidation,
     onSubmit: (values) => {
-      console.log("hi1");
-
       const book = values;
       // call redux redcer
       dispatch(addBook(book));
@@ -30,7 +28,7 @@ const AddBook = () => {
   });
 
   return (
-    <div className="ui main" >
+    <div className="ui main">
       <h2>Add Book</h2>
 
       <form className="ui form" onSubmit={formik.handleSubmit}>
@@ -53,7 +51,7 @@ const AddBook = () => {
         <div className="field">
           <label htmlFor="author">Author</label>
           {formik.touched.author && formik.errors.author ? (
-            <div style={errorStyle }>{formik.errors.author as string}</div>
+            <div style={errorStyle}>{formik.errors.author as string}</div>
           ) : null}
           <input
             type="text"
@@ -86,7 +84,8 @@ const AddBook = () => {
           <button type="submit" className="ui button blue">
             Submit
           </button>
-          <button type="button"
+          <button
+            type="button"
             className="ui button red"
             onClick={() => {
               formik.resetForm();
